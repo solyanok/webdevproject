@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express()
-const port = 6000
+const port = 4040
 mongoose = require ('mongoose')
 require('dotenv').config()
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(require('cors')())
 
 async function connecting(){
     try {
@@ -18,6 +19,7 @@ async function connecting(){
 connecting()
 
 app.use('/boards', require('./routes/boardsRoutes'))
+app.use('/user', require('./routes/userRoutes'))
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
