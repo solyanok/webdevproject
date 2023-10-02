@@ -9,22 +9,22 @@ const handleChange = (e) => {
     const value = e.target.value;
     setBoards({ ...boards, [name]: value });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-        await axios.post('http://localhost:4040/boards/add',{...boards, userEmail:} ) // Second argument is a request body - data that we send to our backend
-       alert('New Board added')
-    setBoards({name: '', description: ''})
-      }catch(e) {
-        alert('Something went wrong')
-      }
-    }
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//         await axios.post('http://localhost:4040/boards/add',{...boards, userEmail:} ) // Second argument is a request body - data that we send to our backend
+//        alert('New Board added')
+//     setBoards({name: '', description: ''})
+//       }catch(e) {
+//         alert('Something went wrong')
+//       }
+//     }
  
 
   return (
    <div>
 
-      <form onChange={handleChange} onSubmit={handleSubmit}>
+      <form onChange={handleChange} > 
         <fieldset>
           <legend>name</legend>
           <input name="name" value={boards.name} />

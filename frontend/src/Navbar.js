@@ -8,6 +8,9 @@ const NavBar = () => {
           <NavLink to="/boards/add">
             Create
           </NavLink>
+          <NavLink to="/user/register">
+          Register
+          </NavLink>
           </li>
           <li>
           Profile

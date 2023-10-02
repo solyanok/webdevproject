@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import axios from "axios";
 
 function Register (){
@@ -17,13 +17,22 @@ function Register (){
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-      try {await axios.post('http://localhost:4040/user/register', reg),
+      try {const response = await axios.post('http://localhost:4040/user/register', reg);
+      if(response.data.ok){
+        alert('Registration completed successfully')
+      }
+      else{
+        alert(response.data.message)
+      }}
+      catch(e){
+        console.log(e)
+      }
 
       }
     
     return (
         <div>
-        <form onChange={handleChange}>
+        <form onChange={handleChange} onSubmit={handleSubmit}>
         <div>
         <label>Email</label>
         <input
