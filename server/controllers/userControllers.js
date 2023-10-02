@@ -34,10 +34,10 @@ class UserController {
 
 async updateUser(req,res){
     const {userId} = req.body
-    const {email, password} = req.body
+    const {email, username, password} = req.body
     try {
         const updated = await User.findOneAndUpdate( { _id: userId },
-        { email, password},
+        { email, username, password},
          );
         res.send({updated});
     }
