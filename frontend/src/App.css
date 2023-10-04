@@ -1,12 +1,60 @@
 .App {
   text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.App-header{
+.nav{
+  background-color: #F7F9F9;
+
+ 
+}
+.nav ul{
+  list-style: none;
   display: flex;
-  justify-content: space-evenly;
-  background-color: cadetblue;
-  color:aliceblue;
+  padding: 0;
+  margin: 0 2px 0 2px;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav li{
+  margin-right: 15px;
+  border: 2px solid #D0D3D4;
+  border-radius: 10%;
+  border-style: inset;
+  padding: 3px;
+  margin: 2px;
+  background-color: #D0D3D4;
+}
+.right-side {
+  display: flex;
+
+  justify-content: center;
+ 
+}
+.left-side{
+  display: flex;
+  align-items: center;
+  
+}
+
+.nav a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+}
+
+.nav a:hover {
+  color: #D6EAF8;
+  background-color: black;
+  border: 2px solid #D0D3D4;
+  border-radius: 10%;
+  border-style: inset;
+  padding: 3px;
+  margin: 2px;
+}
+.nav a:visited { 
+  color: black;
 }
 .boards {
   border: 1px solid black;
@@ -16,4 +64,23 @@
   width: 300px;
   display: inline-block;
   vertical-align: top;
+}
+img {
+  mix-blend-mode: multiply;
+  width: 40px;
+  margin: auto;
+}
+.register-container{
+margin-top: 50px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+}
+.input{
+  display: flex;
+  padding: 5px;
+  border: 1px solid black;
+  margin: 10px;
 }

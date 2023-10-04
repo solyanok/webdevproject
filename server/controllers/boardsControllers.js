@@ -1,5 +1,6 @@
 const Boards = require('../models/boardsModels')
 const User = require('../models/userModels')
+const ObjectId = require('mongoose').Types.ObjectId
 
 class BoardsController {
 
@@ -14,14 +15,13 @@ class BoardsController {
     }
 
     async addNewBoard(req,res){
-        const {name, description, userEmail, userId} = req.body
+        const {name, description, userId} = req.body
         try{
-const found = await User.findOne({email:userEmail}) //remove this line once I will be passing the userId from the frontend part
-if(found){
-    const added = await Boards.create({name, description,user_id:found._id});
 
-}
-            res.send(added)
+if(found){
+    const added = await Boards.create({name, description,user_id: new ObjectId(userId)});
+    res.send(added)
+} 
         }
         catch(e){
             res.send(e)

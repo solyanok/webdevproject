@@ -31,29 +31,31 @@ function Register (){
       }
     
     return (
-        <div>
+        <div className="register-container">
+            <h3>Register</h3>
+            <h5>Please fill in all the fields to create an account.</h5>
         <form onChange={handleChange} onSubmit={handleSubmit}>
         <div>
         <label>Email</label>
-        <input
+        <input className='input'
         type="email"
         name="email" />
         </div>
         <div>
         <label>Username</label>
-        <input
+        <input  className='input'
         type="text"
         name="username" />
         </div>
         <div>
         <label>Password</label>
-        <input
+        <input  className='input'
         type="password"
         name="password" />
         </div>
         <div>
         <label>Repeat your password</label>
-        <input
+        <input className='input'
         type="password"
         name="password2" />
         </div>

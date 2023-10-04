@@ -8,5 +8,6 @@ router.post('/delete', controller.deleteUser)
 router.post('/update', controller.updateUser)
 router.post('/register', controllerAuth.register)
 router.post('/login', controllerAuth.login)
+router.post('/verify_token', controllerAuth.verify_token)
 
 module.exports = router
