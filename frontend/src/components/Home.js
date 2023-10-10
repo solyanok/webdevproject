@@ -15,7 +15,7 @@ export default function Home() {
         </div>
       
         <div className="text-container"> 
-            <h1>Hello! Welcome to the Productivity Portal!</h1>
+            <h1>Hello! Welcome to the Productivity Portal!!</h1>
             <h3 >Please <NavLink className='link' to="/user/login">Login</NavLink> or <NavLink className='link'to="/user/register">Register</NavLink> to start working</h3>
         </div>
     </div>
