@@ -3,9 +3,54 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.homepage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+margin-right: 150px;
+margin-top: 60px;
+}
+.home-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: center;
+ padding: 20px;
+ 
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+  margin-top: 20px;
+}
+
+
+.imagehome{
+  mix-blend-mode: multiply;
+  width: 150px;
+  margin-right: 20px;
+ 
+}
+.imagehome2{
+  mix-blend-mode: multiply;
+  width: 200px;
+ 
+
+}
+
+
+
+.text-container {
+  text-align:left;
+margin: 20px;
+flex: 1;
+}
+
 .nav{
   background-color: #F7F9F9;
-
  
 }
 .nav ul{
@@ -15,6 +60,27 @@
   margin: 0 2px 0 2px;
   justify-content: space-between;
   align-items: center;
+}
+.link{
+  border: 2px solid #D0D3D4;
+  border-radius: 10%;
+  border-style: inset;
+  padding: 3px;
+  margin: 2px;
+  background-color: #D0D3D4;
+  text-decoration: none;
+  color: black;
+}
+.link:hover{
+  color: #D6EAF8;
+  background-color: black;
+  border: 2px solid #D0D3D4;
+  border-radius: 10%;
+  border-style: inset;
+}
+
+.link:visited{
+  color: black;
 }
 .nav li{
   margin-right: 15px;
@@ -43,8 +109,24 @@
   font-size: 14px;
   color: black;
 }
+.logout {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+}
 
-.nav a:hover {
+
+
+
+.nav a:hover .logout :hover {
   color: #D6EAF8;
   background-color: black;
   border: 2px solid #D0D3D4;
@@ -56,16 +138,50 @@
 .nav a:visited { 
   color: black;
 }
-.boards {
-  border: 1px solid black;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 10px;
-  width: 300px;
-  display: inline-block;
-  vertical-align: top;
+.boards-container {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
 }
-img {
+
+.board {
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+  width: 300px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;}
+  
+  .board-wrapper{
+    position: relative;
+  }
+
+  .board h2 {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    text-align: end;
+  }
+
+  .board p {
+    font-size: 14px;
+    margin: 0;
+    text-align: end;
+  }
+.board-wrapper button {
+  border: none;
+  background: none;
+	color: inherit;
+	padding: 0;
+	font: inherit;
+	outline: inherit;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.imagenavbar {
   mix-blend-mode: multiply;
   width: 40px;
   margin: auto;
@@ -83,4 +199,228 @@ align-items: center;
   padding: 5px;
   border: 1px solid black;
   margin: 10px;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+
+.myModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  background: #F7F9F9;
+  overflow: auto;
+  border-radius: 10px;
+  outline: none;
+  padding: 1rem;
+}
+.myoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: black}
+  
+  .task-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .column {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type='text'],
+  textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .button-container { 
+    text-align: center; 
+    margin-top: 10px; 
+  }
+  
+  .button-modal {
+    background-color: #ccc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  .myModal1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    background: #F7F9F9;
+    overflow: auto;
+    border-radius: 10px;
+    outline: none;
+    padding: 1rem;
+  }
+  .myoverlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);}
+    
+    .icon{
+      width: 20px;
+      border: 3px solid #D6EAF8;
+      border-radius: 30%;
+      margin-right: 3px;
+    }
+
+    .icons{
+      position: absolute;
+      top: 10px;
+      padding: 4px;
+      flex-direction: row;
+      justify-content: space-between;
+
+    }
+    
+
+  .task-text{
+    position: relative;
+  
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px;
+      margin-top: 8px;
+    
+  }
+
+  .task-text button{
+    border: none;
+background: none;
+color: inherit;
+padding: 0;
+font: inherit;
+outline: inherit;
+border-radius: 3px;
+cursor: pointer;
+font-size: 14px;
+  }
+
+  .icon1{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px;
+
+    
+  }
+
+  .task h3 {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .task p {
+    font-size: 14px;
+    margin: 0;
+  }
+  
+
+  
+  .board-text{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-top: 8px;
+  }
+.completed{
+  text-decoration: line-through;
+}
+
+.completed button {
+  background: #D6EAF8;
+}
+
+.complete-btn{
+  font-weight: bold;
+  border: 3px solid #D6EAF8;
+  border-radius: 10%;
+margin-top: 10px;
+cursor: pointer;
+background: none;
+}
+
+.icons button { border: none;
+background: none;
+color: inherit;
+padding: 0;
+font: inherit;
+outline: inherit;
+border-radius: 3px;
+cursor: pointer;
+font-size: 14px;
+}
+
+.icon-add button{
+  border: none;
+    background: none;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    outline: inherit;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    
+}
+
+.icon-add{
+  margin-top: 10px;
+}
+
+.tasks-container{
+  position: relative;
 }

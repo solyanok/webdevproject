@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 function Register (){
 
@@ -63,6 +64,7 @@ function Register (){
         <button type="submit">Register</button>
         </div>
         </form>
+        <h5>...or feel free to <NavLink to="/user/register">Login</NavLink> if you already have an account!</h5>
         </div>
 
     )

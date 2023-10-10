@@ -13,7 +13,7 @@ const handleChange = (e) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-debugger
+
      const res =  await axios.post('http://localhost:4040/boards/add',{...boards, userId:props.user.userId} ) // Second argument is a request body - data that we send to our backend
        alert('New Board added')
     setBoards({name: '', description: ''})
@@ -29,7 +29,7 @@ debugger
       <form onChange={handleChange} onSubmit={handleSubmit} > 
         <fieldset>
           <legend>name</legend>
-          <input name="name" value={boards.name} />
+          <input required name="name" value={boards.name} />
         </fieldset>
         <fieldset>
           <legend>description</legend>

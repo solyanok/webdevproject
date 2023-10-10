@@ -43,18 +43,14 @@ const login = async (req, res) => {
    if(!identifier || !password) {
        return res.json({ ok: false, message: "All fields required" });
      }
-
      const getUserFromIdentifier = async (identifier) => {
-      try {
-        if (validator.isEmail(identifier)) {
-          return await Auth.findOne({ email: identifier });
-        } else {
-          return await Auth.findOne({ username: identifier });
-        }
-      } catch (e) {
-      res.json({ok: false, e}); 
+      if (validator.isEmail(identifier)) {
+        return await Auth.findOne({ email: identifier });
+      } else {
+        return await Auth.findOne({ username: identifier });
       }
     };
+  
     try {
       const userFromIdentifier = await getUserFromIdentifier(identifier) 
       if (!userFromIdentifier) {
@@ -63,8 +59,8 @@ const login = async (req, res) => {
        const match = await argon2.verify(userFromIdentifier.password, password);
        try{
        if (match) {
-        const token = jwt.sign({userId: userFromIdentifier._id}, jwt_secret, {expiresIn: "1h"})
-        res.json({ ok: true, message: "Welcome back", token })} 
+        const token = jwt.sign({userId: userFromIdentifier._id, email: userFromIdentifier.email, username: userFromIdentifier.username, password: userFromIdentifier.password}, jwt_secret, {expiresIn: "1h"})
+        res.json({ ok: true, message: "Welcome back!", token })} 
         else return res.json({ ok: false, message: "Invalid data provided" }); }
         catch (error) {
     res.json({ ok: false, error });}
@@ -74,7 +70,7 @@ const login = async (req, res) => {
 }
 
     const verify_token = (req, res) => {
-        console.log(req.headers.authorization);
+        
         const token = req.headers.authorization;
         jwt.verify(token, jwt_secret, (err, succ) => {
           err
@@ -82,6 +78,5 @@ const login = async (req, res) => {
             : res.json({ ok: true, succ });
         });
   }
-
 
 module.exports = { register, login, verify_token };

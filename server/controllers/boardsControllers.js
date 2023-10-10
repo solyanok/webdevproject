@@ -18,23 +18,24 @@ class BoardsController {
         const {name, description, userId} = req.body
         try{
 
-if(found){
+
     const added = await Boards.create({name, description,user_id: new ObjectId(userId)});
     res.send(added)
-} 
+
         }
         catch(e){
             res.send(e)
         }
     }
+
     async updateBoard(req,res){
-        const {boardId} = req.body
-        const {name, description} = req.body
+     
+        const {name, description, board_id} = req.body
         try {
-            const updated = await Boards.findOneAndUpdate( { _id: boardId },
+            const updated = await Boards.findOneAndUpdate( { _id: board_id },
             { name, description },
              );
-            res.send({updated});
+             res.json({ ok: true, message: 'Board updated successfully' });
         }
         catch(e){
             res.send(e)
@@ -45,7 +46,12 @@ if(found){
         console.log(boardId);
         try{
             const removed = await Boards.deleteOne({_id: boardId});
-            res.send({removed});
+            if (removed.deletedCount === 1) {
+            res.send({ok: true, message: 'Board deleted successfully'})}
+        else {
+            res.send({ok: false, message: 'Smth went wrong'})  
+        }
+
         }  
             catch(e){
                 res.send({e})

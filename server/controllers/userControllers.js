@@ -2,22 +2,6 @@ const User = require('../models/userModels')
 
 class UserController {
 
-    async addUser (req,res){
-        const {email, password} = req.body
-        try{
-        if(!await User.findOne({ email, password })){
-            const added = await User.create({email, password});
-            res.send(added)
-        }
-        else{
-            res.send("An account is already registered with your email address")
-        }
-        }
-        catch(e){
-            res.send(e)
-        }
-    }
-
     async deleteUser (req,res){
         const {userId} = req.body
         try{
@@ -36,7 +20,7 @@ async updateUser(req,res){
     const {userId} = req.body
     const {email, username, password} = req.body
     try {
-        const updated = await User.findOneAndUpdate( { _id: userId },
+        const updated = await User.findOneAndUpdate( { _id: userId},
         { email, username, password},
          );
         res.send({updated});

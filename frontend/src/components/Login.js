@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import * as jose from "jose"
 
 function Login (props) {
@@ -17,7 +17,7 @@ const handleChange = (e) => {
   };
 
   const handleSubmit = async (e) => {
-  
+
     e.preventDefault();
     try{const response = await axios.post('http://localhost:4040/user/login', login);
     if(response.data.ok){
@@ -26,12 +26,18 @@ const handleChange = (e) => {
             "Email extracted from the JWT token after login: ",
             decodedToken.userId
           );  }
+
           setMessage(response.data.message)
-          setTimeout(() => {
+          if (response.data.token) {
             props.login(response.data.token);
-            setMessage("")
-            navigate("/");
-        }, 2000);
+            setTimeout(() => {
+              setMessage('');
+              navigate('/boards/home');
+            }, 2000);
+          }
+          else{
+            SetLogin({ identifier:"", password:""})
+          }
     }
     catch(e){
         console.log(e)
@@ -48,19 +54,22 @@ const handleChange = (e) => {
         <label>Email or username</label>
         <input className='input'
         type="text"
-        name="identifier" />
+        name="identifier"
+        onFocus={() => SetLogin({ ...login, identifier: '' })} value={login.identifier}  />
         </div>
         <div>
         <label>Password</label>
         <input className='input'
         type="password"
-        name="password" />
+        name="password"
+        onFocus={() => SetLogin({ ...login, password: '' })} value={login.password} />
         </div>
         <div>
         <button type="submit">Login</button>
         </div>
         </form>
         </div>
+        <h5>...or feel free to <NavLink to="/user/register">Register</NavLink> if you don't have an account yet!</h5>
         <p>{message}</p>
         </>
 
