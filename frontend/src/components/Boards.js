@@ -10,7 +10,6 @@ import {URL} from '../config'
 function Boards (user){
 const [boards, setBoards] = useState(
   [])
-
 const [open, setIsOpen] = useState(false)
 const[openBoards, setIsOpenBoards] = useState(false)
   const [tasks, setTasks] = useState([])
@@ -22,7 +21,6 @@ const[openBoards, setIsOpenBoards] = useState(false)
 {
   try {
 
-    debugger
     const userId = JSON.parse(localStorage.getItem('user')).userId;
     const response = await axios.get(`${URL}/boards/home`,  { userId:userId} )
 
