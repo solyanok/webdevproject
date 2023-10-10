@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from "axios";
 import { useNavigate, NavLink } from "react-router-dom";
 import * as jose from "jose"
+import {URL} from '../config'
 
 function Login (props) {
 const [login, SetLogin] = useState(
@@ -19,7 +20,7 @@ const handleChange = (e) => {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
-    try{const response = await axios.post('http://localhost:4040/user/login', login);
+    try{const response = await axios.post(`${URL}/user/login`, login);
     if(response.data.ok){
         let decodedToken = jose.decodeJwt(response.data.token);
         console.log(
@@ -43,6 +44,8 @@ const handleChange = (e) => {
         console.log(e)
       }
 }
+
+useEffect(()=>{})
 
     return(
         <>

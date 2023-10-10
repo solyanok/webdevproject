@@ -5,11 +5,9 @@ import BoardsModal from './components1/BoardsModal';
 import trash from '../assets/2891491.png'
 import add from '../assets/992651.png'
 import edit from '../assets/7398464.png'
+import {URL} from '../config'
 
-
-
-
-function Boards (token){
+function Boards (user){
 const [boards, setBoards] = useState(
   [])
 
@@ -23,8 +21,11 @@ const[openBoards, setIsOpenBoards] = useState(false)
     const getBoards = async () =>
 {
   try {
-    const response = await axios.get('http://localhost:4040/boards/home')
-    console.log(response);
+
+    debugger
+    const userId = JSON.parse(localStorage.getItem('user')).userId;
+    const response = await axios.get(`${URL}/boards/home`,  { userId:userId} )
+
 setBoards(response.data)
 
   }catch(e) {
@@ -35,7 +36,7 @@ setBoards(response.data)
 const getTasks = async () =>
 {
   try {
-    const response = await axios.get('http://localhost:4040/tasks/home')
+    const response = await axios.get(`${URL}/tasks/home`)
     console.log(response);
 setTasks(response.data)
 
@@ -73,7 +74,7 @@ setIsOpen(false);}
 const handleDeleteBoard = async (id) => {
     if (window.confirm('Are you sure you want to delete this board?')) {
       try {
-        const response = await axios.delete('http://localhost:4040/boards/delete', { data: {boardId: id} }); 
+        const response = await axios.delete(`${URL}/boards/delete`, { data: {boardId: id} }); 
       if (response.data.ok){
         setBoards((boards) => boards.filter((e) => e._id !== id))}
       } catch (e) {
@@ -84,7 +85,7 @@ const handleDeleteBoard = async (id) => {
   const handleDeleteTask = async (id) => {
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
-        const response = await axios.delete('http://localhost:4040/tasks/delete', { data: {taskId: id} }); 
+        const response = await axios.delete(`${URL}/tasks/delete`, { data: {taskId: id} }); 
       if (response.data.ok){
         setTasks((tasks) => tasks.filter((e) => e._id !== id))}
       } catch (e) {
@@ -95,7 +96,7 @@ const handleDeleteBoard = async (id) => {
 
   const toggleTaskCompleted = async (taskId, completed) => {
     try {
-      const response = await axios.post('http://localhost:4040/tasks/complete', { taskId, completed });
+      const response = await axios.post(`${URL}/tasks/complete`, { taskId, completed });
       if (response.data.ok) {
         setTasks((tasks) => tasks.map((task) => {
           if (task._id === taskId) {
@@ -155,7 +156,7 @@ return (
           </div>
         ))}
     {selectedBoard &&  <TaskModal open={open} setIsOpen={setIsOpen} board={selectedBoard} addTask={addTask}  />}
-    {selectedBoard &&  <BoardsModal openBoards={openBoards} setIsOpenBoards={setIsOpenBoards} board={selectedBoard} setBoards={setBoards} token={token}   />}
+    {selectedBoard &&  <BoardsModal openBoards={openBoards} setIsOpenBoards={setIsOpenBoards} board={selectedBoard} setBoards={setBoards} user={user}   />}
     </div>
   );
 

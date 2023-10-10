@@ -1,19 +1,17 @@
 import Modal from "react-modal";
 import axios from 'axios';
 import { useState } from 'react';
+import {URL} from '../../config'
 
 Modal.setAppElement("#root");
 
-function BoardsModal({ board, setBoards, setIsOpenBoards, openBoards, token }) {
+function BoardsModal({ board, setBoards, setIsOpenBoards, openBoards, user }) {
   const [updBoard, setUpdBoard] = useState({board_id:board});
 
   const editBoards = async () => {
     try {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-     
-      const response = await axios.post('http://localhost:4040/boards/update', updBoard, {headers});
+      
+      const response = await axios.post(`${URL}/boards/update`, updBoard, );
       if (response.data.ok) {
         const updatedBoards = {  ...updBoard };
         setBoards(updatedBoards);

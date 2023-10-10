@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { URL } from '../config';
 
 function Register (){
 
@@ -18,7 +19,7 @@ function Register (){
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-      try {const response = await axios.post('http://localhost:4040/user/register', reg);
+      try {const response = await axios.post(`${URL}/user/register`, reg);
       if(response.data.ok){
         alert('Registration completed successfully')
       }

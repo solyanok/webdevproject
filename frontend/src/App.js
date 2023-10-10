@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Boards from './components/Boards';
@@ -12,6 +12,7 @@ import Private from './components/Private';
 
 import * as jose from "jose"
 import Home from './components/Home';
+import { URL } from './config';
 
 
 function App() {
@@ -31,7 +32,7 @@ console.log(user)
           setIsLoggedIn(false);
         } else {
           axios.defaults.headers.common["Authorization"] = token;
-          const response = await axios.post('http://localhost:4040/user/verify_token');
+          const response = await axios.post(`${URL}/user/verify_token`);
           return response.data.ok ? login(token) : logout();
         }
         } catch (error) {
@@ -42,7 +43,6 @@ console.log(user)
     }, [token]);
 
     const login = (token) => {
-     
       let decodedToken = jose.decodeJwt(token);
     let user = {
       userId: decodedToken.userId,
@@ -64,24 +64,18 @@ console.log(user)
 
   return (
     <div className="App">
-      <Router>
+      {isLoggedIn !== null &&  <Router>
          {isLoggedIn ? (
           <Navbar isLoggedIn={isLoggedIn} logout={logout} />
         ) : (
-          <Navbar isLoggedIn={false}>
-            <li>
-              <Navigate to="/user/register">Register</Navigate>
-            </li>
-            <li>
-              <Navigate to="/user/login">Login</Navigate>
-            </li>
-          </Navbar>
+          <Navbar isLoggedIn={false}/>
         )}      
     <Routes>
+    
     <Route path='/' element={<Home /> } />
     <Route path="/user/register" element={<Register />} />
     <Route path='/user/login' element={<Login isLoggedIn={isLoggedIn} login={login} /> } />
-    <Route path='/boards/home' element={isLoggedIn ? <Boards token={token}/> : <Navigate to='/user/login' /> } />
+    <Route path='/boards/home' element={isLoggedIn ? <Boards user={user}/> : <Navigate to='/user/login' /> } />
     <Route path='/boards/add' element={isLoggedIn ? (<Create isLoggedIn={isLoggedIn} login={login} user={user} />) : (<Navigate to='/user/login' />) } />
     <Route path='/user/update' element={<Private setIsLoggedIn={setIsLoggedIn} logout={logout} />}>
     <Route path='/user/update' element={ <Profile isLoggedIn={isLoggedIn} login={login} user={user} logout={logout} />  } />
@@ -89,7 +83,8 @@ console.log(user)
       
 
     </Routes>
-  </Router>
+  </Router> }
+     
  
 
     </div>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import {URL} from '../config'
 
 function Profile (props){
     const [profile, setProfile] = useState(props.user || { email: '', username: '' });
@@ -18,7 +19,7 @@ function Profile (props){
       const handleSubmit = async (e) => {
   
         e.preventDefault();
-        try{const response = await axios.post('http://localhost:4040/user/update', profile);
+        try{const response = await axios.post(`${URL}/user/update`, profile);
      console.log(response)
      setMessage('Profile updated successfully!');
         }
@@ -32,7 +33,7 @@ function Profile (props){
             e.preventDefault();
             if (window.confirm('Are you sure you want to delete your profile?')) {
               try {
-                await axios.delete('http://localhost:4040/user/delete', { data: profile });
+                await axios.delete(`${URL}/user/delete`, { data: profile });
                 setMessage('Profile deleted successfully');
                 props.logout();
                 navigate('/user/login')

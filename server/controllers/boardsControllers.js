@@ -4,9 +4,13 @@ const ObjectId = require('mongoose').Types.ObjectId
 
 class BoardsController {
 
-    async showAllBoards(req,res){
+    async showAllBoards(req,res){const { userId } = req.body;
         try{
-            const all = await Boards.find({});
+            const user = await User.findOne({ userId });
+            if (!user) {
+                return res.send({ error: "User not found" });
+            }
+            const all = await Boards.find({ userId});
             res.send(all)
         }
         catch(e){

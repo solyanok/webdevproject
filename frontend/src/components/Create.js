@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
-
+import {URL} from '../config'
 function Create(props){
 const [boards, setBoards] = useState({name: '', description: ''})
 const [message,setMessage] = useState("")
@@ -14,7 +14,7 @@ const handleChange = (e) => {
     e.preventDefault();
     try {
 
-     const res =  await axios.post('http://localhost:4040/boards/add',{...boards, userId:props.user.userId} ) // Second argument is a request body - data that we send to our backend
+     const res =  await axios.post(`${URL}/boards/add`,{...boards, userId:props.user.userId} ) // Second argument is a request body - data that we send to our backend
        alert('New Board added')
     setBoards({name: '', description: ''})
       }catch(e) {

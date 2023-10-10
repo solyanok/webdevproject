@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import axios from 'axios'
 import {useState} from 'react'
+import {URL} from '../../config'
 
 
 
@@ -15,7 +16,7 @@ function TaskModal({open, setIsOpen, board, addTask}){
     e.preventDefault();
     try {
     
-        const response = await axios.post('http://localhost:4040/tasks/add',
+        const response = await axios.post(`${URL}/tasks/add`,
          { boards_id:board,
             name: addTaskName,
             description: addTaskDesc,
