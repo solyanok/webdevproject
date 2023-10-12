@@ -14,6 +14,7 @@ function Boards({ isLoggedIn, user }) {
   const [tasks, setTasks] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
 
+  console.log(isLoggedIn);
   const getBoards = async () => {
     try {
       const userId = JSON.parse(localStorage.getItem("user")).userId;
