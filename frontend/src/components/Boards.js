@@ -21,6 +21,7 @@ function Boards({ isLoggedIn, user }) {
       const response = await axios.get(`${URL}/boards/all`, {
         userId: userId,
       });
+      console.log(response.data);
       setBoards(response.data);
     } catch (e) {
       console.log(e);
