@@ -18,7 +18,7 @@ function Boards({ isLoggedIn, user }) {
   const getBoards = async () => {
     try {
       const userId = JSON.parse(localStorage.getItem("user")).userId;
-      const response = await axios.get(`${URL}/boards/home`, {
+      const response = await axios.get(`${URL}/boards/all`, {
         userId: userId,
       });
       setBoards(response.data);
